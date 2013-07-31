@@ -10,8 +10,8 @@ module USAePay
       @wsdl = wsdl
       @source_key = opts[:source_key] || raise('Missing source_key')
       @pin = opts[:pin]
-      @savon = Savon::Client.new @wsdl
-      yield self
+      @savon = Savon::Client.new(@wsdl)
+      yield self if block_given?
     end
 
     def sha1

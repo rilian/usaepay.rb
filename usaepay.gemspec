@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   s.files        = Dir['bin/**/*', 'lib/**/*']
   s.require_path = 'lib'
   s.requirements << 'none'
+  s.bindir = 'bin'
+  s.executables << 'usaepay'
 
-  s.add_dependency 'savon',     '~> 2.3.0'
+  s.add_dependency 'savon',     '~> 1.2.0'
 end
