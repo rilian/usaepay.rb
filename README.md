@@ -2,7 +2,18 @@
 
 ```Ruby
 wsdl = 'https://sandbox.usaepay.com/soap/gate/1234567890/usaepay.wsdl'
-USAePay::Client.new wsdl
+USAePay::Client.new(wsdl, {:source_key => 'test', :pin => '1234') do |c|
+  response = c.request('get_transaction_report') do |r|
+    body = {
+      "StartDate" => "04/28/2013", 
+      "EndDate" => "06/29/2013", 
+      "Report" => "check:settled by date", 
+      "Format" => "csv
+    }
+    r.body = {'Token' => c.token}.merge(body)
+  end
+  puts response.to_hash.to_json
+end
 ```
 
 # CLI
