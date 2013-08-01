@@ -1,3 +1,17 @@
+# Install
+
+Make sure you have Ruby and Ruby development headers. On ubuntu you need the ruby and ruby-dev packages
+
+```
+apt-get install ruby ruby-dev
+```
+
+Then install using rubygems
+
+```
+gem install usaepay
+```
+
 # API
 
 ```Ruby
