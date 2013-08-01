@@ -35,15 +35,19 @@ module USAePay
         options[:body] = body
       end
 
-      opts.on("-d", "-debug", "Output debug messages from savon") do |dbg|
+      opts.on("-d", "Output debug messages from savon") do |dbg|
         options[:debug] = dbg
-        #Savon.configure do |config|
-        #  config.log = true
-        #end
       end
     end.parse!
 
     required_options! :wsdl, :source_key, :command, :body, options
+
+    if options[:debug]
+      Savon.configure do |config|
+        config.log = true
+        HTTPI.log = true
+      end
+    end
 
     USAePay::Client.new(options[:wsdl], options) do |c|
       response = c.request(options[:command]) do |r|
